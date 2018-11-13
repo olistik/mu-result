@@ -1,5 +1,7 @@
 # Mu::Result
 
+[![Gem Version](https://badge.fury.io/rb/mu-result.svg)](https://badge.fury.io/rb/mu-result)
+
 This is a really tiny implementation of the Result object.
 
 ## Installation
