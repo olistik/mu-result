@@ -24,6 +24,7 @@ Or install it yourself as:
 
 ```ruby
 include 'mu'
+
 result = Result.success
 result.success? # => true
 result = Result.error
@@ -32,6 +33,25 @@ result = Result.error.code!(:net_timeout)
 result.code # => :net_timeout
 result = Result.success(name: 'Arthur Dent', answer: 42)
 result.data # => { name: 'Arthur Dent', answer: 42 }
+```
+
+### Unwrap
+
+When you want to access to a specific field of the result, you can _unwrap_ it:
+
+```ruby
+result = Result.success(user: 'olistik', role: :developer)
+result.unwrap(:user) # => 'olistik'
+result.unwrap(:role) # => :developer
+result.unwrap(:name) # => raises `StandardError (The symbol 'name' is not included in the result data object.)`
+```
+
+This is a way to avoid getting unwanted nil values out of the result when passing the wrong field:
+
+```ruby
+result = Result.success(user: 'olistik', role: :developer)
+value = result.data[:users] # => nil, this could lead to an annoying bug later on because we're not aware there's a typo in `:users`, yet.
+value = result.unwrap(:users) # This raises an exception instead, making it evident that we're using the wrong name for the field.
 ```
 
 ## Development

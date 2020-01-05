@@ -27,4 +27,24 @@ RSpec.describe Mu::Result do
     expect(Mu::Result.success({never: :gonna, give_you: :up}).data).to eql({never: :gonna, give_you: :up})
     expect(Mu::Result.error({never: :gonna, let_you: :down}).data).to eql({never: :gonna, let_you: :down})
   end
+
+  describe '#unwrap' do
+    let(:result) { Mu::Result.success(user: 'olistik', role: 'developer') }
+
+    context 'when retrieving a field' do
+      context 'when the field is present' do
+        it 'returns the value of corresponding key' do
+          expect(result.unwrap(:user)).to eql('olistik')
+          expect(result.unwrap(:role)).to eql('developer')
+        end
+      end
+
+      context 'when the field is NOT present' do
+        it 'raises an exception' do
+          expect { result.unwrap(:users) }.to raise_error(StandardError)
+          expect { result.unwrap(:foo) }.to raise_error(StandardError)
+        end
+      end
+    end
+  end
 end
