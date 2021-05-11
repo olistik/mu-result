@@ -2,7 +2,8 @@ module Mu
   module Result
 
     class BaseResult
-      def initialize(code: :ok, data: nil)
+      def initialize(is_success: true, code: :ok, data: nil)
+        @is_success = is_success
         @code = code
         @data = data
       end
@@ -21,7 +22,7 @@ module Mu
       end
 
       def success?
-        @code == :ok
+        @is_success == true
       end
 
       def error?
