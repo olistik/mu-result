@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{μResult is a small Result object}
   spec.description   = %q{μ as in micro}
-  spec.homepage      = 'https://source.olisti.co/olistik/mu-result'
+  spec.homepage      = 'https://github.com/olistik/mu-result'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
