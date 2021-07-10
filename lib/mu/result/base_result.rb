@@ -38,6 +38,13 @@ module Mu
 
         return data[symbol]
       end
+
+      def to_hash
+        {
+          code: code,
+          data: data,
+        }
+      end
     end
 
   end
