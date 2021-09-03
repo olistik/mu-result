@@ -33,10 +33,7 @@ module Mu
         return data if symbol.nil?
 
         if !data.respond_to?(:include?) || !data.include?(symbol)
-          messages = []
-          messages << "The symbol '#{symbol}' is not included in the result data object."
-          messages += caller
-          raise StandardError.new(messages.join("\n"))
+          raise StandardError.new("The symbol '#{symbol}' is not included in the result data object.")
         end
 
         return data[symbol]
