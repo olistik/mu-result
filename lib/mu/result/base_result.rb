@@ -45,7 +45,10 @@ module Mu
           data: data,
         }
       end
-    end
 
+      def merge_data(data)
+        self.class.new(is_success: @is_success, code: @code, data: (@data || {}).merge(data))
+      end
+    end
   end
 end
